@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Housing-Era Classification | Kevin Murray</title>
+<meta name="description" content="Rendered analytics project by Kevin Murray with executed results, visuals, findings, and source code.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#071018;--panel:#0c1721;--panel2:#101e2a;--ink:#eef5f6;--muted:#98aab2;--mint:#67e8c2;--blue:#78b7ff;--line:#223440;--amber:#f7c86b}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Manrope,system-ui,sans-serif;line-height:1.65}a{color:inherit}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}nav{position:sticky;top:0;z-index:10;background:rgba(7,16,24,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.nav{height:70px;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;text-decoration:none}.back{font:12px 'DM Mono';color:var(--mint);text-decoration:none}header{padding:82px 0 50px;border-bottom:1px solid var(--line);background:radial-gradient(circle at 82% 18%,rgba(103,232,194,.11),transparent 32%)}.eyebrow{font:12px 'DM Mono';letter-spacing:.12em;color:var(--mint)}h1{font-size:clamp(2.55rem,6vw,5.3rem);line-height:1;letter-spacing:-.06em;margin:16px 0 22px;max-width:930px}.lede{max-width:790px;color:#c5d2d7;font-size:1.08rem}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}.btn{display:inline-flex;border:1px solid var(--line);border-radius:8px;padding:10px 14px;text-decoration:none;font:12px 'DM Mono'}.btn.primary{border-color:var(--mint);color:var(--mint)}.metrics{display:grid;grid-template-columns:repeat(4,1fr);margin-top:40px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}.metric{padding:22px;border-right:1px solid var(--line)}.metric:last-child{border-right:0}.metric strong{display:block;color:var(--mint);font-size:1.45rem;line-height:1.2}.metric span{display:block;margin-top:6px;color:var(--muted);font-size:.76rem}main{padding:58px 0 90px}section{margin:0 0 54px}h2{font-size:clamp(1.65rem,3vw,2.4rem);letter-spacing:-.04em;margin:0 0 12px}section>p{color:#bdcbd0;max-width:820px}.findings{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}.finding{padding:19px;border:1px solid var(--line);border-radius:11px;background:var(--panel)}.finding strong{display:block;color:var(--mint);margin-bottom:7px}.finding span{color:var(--muted);font-size:.86rem}.charts{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:25px}.chart{margin:0;border:1px solid var(--line);border-radius:13px;background:var(--panel);overflow:hidden}.chart.wide{grid-column:1/-1}.chart img{display:block;width:100%;height:auto}figcaption{padding:12px 16px;border-top:1px solid var(--line);color:var(--muted);font-size:.76rem}details{border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden}summary{cursor:pointer;padding:17px 20px;color:var(--mint);font:12px 'DM Mono'}pre{margin:0;padding:24px;max-height:720px;overflow:auto;background:#050c12;color:#d4e2e6;font:12px/1.72 'DM Mono';white-space:pre}.method{padding:20px;border-left:3px solid var(--blue);background:var(--panel);border-radius:0 10px 10px 0;color:#c4d1d6}footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:.8rem}@media(max-width:760px){.metrics,.findings,.charts{grid-template-columns:1fr}.metric{border-right:0;border-bottom:1px solid var(--line)}.chart.wide{grid-column:auto}h1{font-size:3rem}}
+</style></head><body>
+<nav><div class="wrap nav"><a class="brand" href="../index.html">Kevin Murray</a><a class="back" href="../index.html#academic">← Back to portfolio</a></div></nav>
+<header><div class="wrap"><span class="eyebrow">PYTHON · SCIKIT-LEARN · RANDOM FOREST</span><h1>Housing-Era Classification</h1><p class="lede">A complete machine-learning workflow for predicting whether a home was built before 1980, including exploratory visuals, model training, held-out evaluation, and interpretable feature importance.</p><div class="actions"><a class="btn primary" href="#results">View executed analysis ↓</a><a class="btn" href="https://github.com/kmurray649/Data-Analytics-Portfolio/blob/main/Python/Baseball%20Field%20ML.qmd" target="_blank" rel="noreferrer">Original QMD on GitHub ↗</a></div><div class="metrics"><div class="metric"><strong>90.5%</strong><span>test-set accuracy</span></div><div class="metric"><strong>92.1%</strong><span>precision</span></div><div class="metric"><strong>92.9%</strong><span>recall</span></div><div class="metric"><strong>22,913</strong><span>housing records</span></div></div></div></header>
+<main class="wrap" id="results"><section><h2>Model performance</h2><div class="findings"><div class="finding"><strong>90.5% accuracy</strong><span>The classifier correctly labeled more than nine out of ten homes in the held-out test set.</span></div><div class="finding"><strong>92.1% precision</strong><span>Positive predictions for pre-1980 homes were reliable.</span></div><div class="finding"><strong>92.9% recall</strong><span>The model captured most of the actual pre-1980 homes in the test data.</span></div></div></section><section><h2>Executed visuals from the original QMD</h2><p>The model was retrained from the project code using 22,913 housing records and the original 70/30 train-test split.</p><div class="charts"><figure class="chart"><img src="housing-area-price.svg" alt="Scatter plot of living area and sale price by construction era"><figcaption>A 4,000-record display sample keeps the original relationship readable while preserving both construction-era classes.</figcaption></figure><figure class="chart"><img src="housing-bedrooms-boxplot.svg" alt="Box plot of bedroom counts by construction era"><figcaption>This reproduces the second exploratory chart from the source analysis.</figcaption></figure><figure class="chart"><img src="housing-basement-histogram.svg" alt="Overlaid histogram of basement area by construction era"><figcaption>This reproduces the third exploratory chart from the source analysis; the display axis is capped at the 99th percentile for readability.</figcaption></figure><figure class="chart"><img src="housing-feature-importance.svg" alt="Horizontal bar chart of Random Forest feature importance"><figcaption>The strongest model signals were tasp, livearea, stories.</figcaption></figure></div></section><section><h2>Additional model validation</h2><p>This confusion matrix is an additional diagnostic generated from the same trained model and held-out test data. It supplements—rather than replaces—the original analysis.</p><div class="charts"><figure class="chart"><img src="housing-confusion-matrix.svg" alt="Confusion matrix for the housing-era classifier"><figcaption>The matrix shows correct and incorrect predictions across both construction-era classes.</figcaption></figure></div></section><section><h2>Method</h2><div class="method">Selected ten structural, capacity, value, and condition features; created a stratified 70/30 split; trained a 100-tree Random Forest; and evaluated accuracy, precision, recall, confusion matrix, and feature importance on unseen test records.</div></section><section><h2>Original source</h2><p>The complete project source is preserved below so reviewers can inspect the transformations, model logic, and visualization code.</p><details><summary>View complete Python / Quarto source</summary><pre><code>---
+title: &quot;Baseball Field ML&quot;
+author: &quot;Kevin Murray&quot;
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    title-block-banner: true
+    toc: true
+    toc-depth: 3
+    toc-location: body
+    number-sections: false
+    html-math-method: katex
+    code-fold: true
+    code-summary: &quot;Show the code&quot;
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+        source: false
+        toggle: true
+        caption: See code
+execute: 
+  warning: false
+    
+---
+
+```{python}
+#| label: libraries
+#| include: false
+import pandas as pd
+import numpy as np
+import plotly.express as px
+from sklearn.ensemble import GradientBoostingClassifier
+from sklearn import metrics
+from sklearn.model_selection import train_test_split
+from sklearn import tree
+from sklearn.naive_bayes import GaussianNB
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+```
+
+
+### Elevator Pitch
+
+The Random Forest model excels at predicting whether a house was built before or after 1980, achieving a high level of accuracy. The most influential features in training the model were `tasp`, `livearea`, `stories`, and `numbaths`. These features provided strong signals for differentiating homes based on their construction periods. In contrast, the Gaussian Naive Bayes model, while simpler, achieved moderate accuracy at about 80%. This analysis highlights the power of ensemble methods like Random Forest in capturing complex patterns.
+
+---
+
+```{python}
+#| label: project-data
+#| code-summary: read and format project data
+
+dwellings_data = pd.read_csv(&quot;https://raw.githubusercontent.com/byuidatascience/data4dwellings/master/data-raw/dwellings_ml/dwellings_ml.csv&quot;)
+
+```
+
+### Chart 1: Living Area vs. Sale Price
+
+This scatter plot reveals a potential relationship between the living area and the sale price of homes, with homes built before and after 1980 distinguished by color. It suggests that older homes may show distinct trends in size and pricing compared to newer ones, providing the model with key differentiators for classification.
+
+```{python}
+import plotly.express as px
+
+chart1 = px.scatter(dwellings_data, x=&#x27;livearea&#x27;, y=&#x27;sprice&#x27;, color=&#x27;before1980&#x27;,
+                    title=&#x27;Living Area vs. Sale Price&#x27;,
+                    labels={&#x27;livearea&#x27;: &#x27;Living Area (sq ft)&#x27;, &#x27;sprice&#x27;: &#x27;Sale Price ($)&#x27;, &#x27;before1980&#x27;: &#x27;Built Before 1980&#x27;})
+chart1.show()
+```
+
+### Chart 2: Number of Bedrooms vs. Built Before 1980
+The box plot highlights differences in the distribution of bedroom counts for homes built before and after 1980. Notable differences in medians or variability could signal that bedroom count is a valuable feature for determining construction periods.
+
+```{python}
+chart2 = px.box(dwellings_data, x=&#x27;before1980&#x27;, y=&#x27;numbdrm&#x27;,
+                title=&#x27;Number of Bedrooms vs. Built Before 1980&#x27;,
+                labels={&#x27;before1980&#x27;: &#x27;Built Before 1980&#x27;, &#x27;numbdrm&#x27;: &#x27;Number of Bedrooms&#x27;})
+chart2.show()
+```
+
+
+### Chart 3: Total Basement Area by Built Before 1980
+The histogram reveals the distribution of basement areas for homes built in different eras. Clear distinctions in the distributions suggest that basement area can be an effective predictor, helping the model distinguish between homes from these two construction periods.
+
+```{python}
+chart3 = px.histogram(dwellings_data, x=&#x27;basement&#x27;, color=&#x27;before1980&#x27;, barmode=&#x27;overlay&#x27;,
+                      title=&#x27;Total Basement Area by Built Before 1980&#x27;,
+                      labels={&#x27;basement&#x27;: &#x27;Total Basement Area (sq ft)&#x27;, &#x27;before1980&#x27;: &#x27;Built Before 1980&#x27;})
+chart3.show()
+```
+
+### Task 2: Classification Model Development
+The Random Forest Classifier was chosen for its ability to handle complex, nonlinear relationships between features. After tuning key parameters such as the number of trees, it achieved an accuracy of 91%. This was higher than other algorithms tested, including Logistic Regression and Gradient Boosting, which were less effective for this dataset. With its high accuracy and interpretability, the Random Forest model was the optimal choice for this task.
+
+```{python}
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+# Prepare features and target
+ml_features = dwellings_data.filter([&#x27;livearea&#x27;, &#x27;finbsmnt&#x27;, &#x27;numbdrm&#x27;, &#x27;numbaths&#x27;, &#x27;nocars&#x27;, &#x27;stories&#x27;, &#x27;basement&#x27;, &#x27;tasp&#x27;, &#x27;condition_AVG&#x27;, &#x27;condition_Excel&#x27;])
+ml_targets = dwellings_data[&#x27;before1980&#x27;]
+
+# Split the data
+X_train, X_test, y_train, y_test = train_test_split(ml_features, ml_targets, test_size=0.3, random_state=42)
+
+# Train the Random Forest Classifier
+rf_classifier = RandomForestClassifier(n_estimators=100, random_state=42)
+rf_classifier.fit(X_train, y_train)
+
+# Make predictions
+y_pred = rf_classifier.predict(X_test)
+
+# Evaluate accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print(f&quot;Accuracy: {accuracy}&quot;)
+```
+
+### Task 3: Feature Importance Analysis
+The Random Forest model identified key features like livearea, numbaths, stories, and tasp as the most impactful in predicting construction period. Using only these top features yielded an accuracy above 82%, confirming their significance. Including additional features, even those with lower importance like condition_Excel, boosted the overall accuracy to 91%, underscoring the complementary role of less prominent variables.
+
+```{python}
+# Feature Importance Analysis
+feature_importances = rf_classifier.feature_importances_
+feature_names = X_train.columns
+
+# Create DataFrame for feature importance
+df_features = pd.DataFrame({&#x27;Feature&#x27;: feature_names, &#x27;Importance&#x27;: feature_importances})
+df_features = df_features.sort_values(by=&#x27;Importance&#x27;, ascending=True)
+
+# Plot feature importance
+fig = px.bar(df_features, x=&#x27;Importance&#x27;, y=&#x27;Feature&#x27;, orientation=&#x27;h&#x27;,
+             title=&#x27;Feature Importance Chart&#x27;,
+             labels={&#x27;Feature&#x27;: &#x27;Feature&#x27;, &#x27;Importance&#x27;: &#x27;Importance Score&#x27;})
+fig.show()
+```
+
+### Task 4: Model Evaluation Metrics
+The Random Forest Classifier demonstrated excellent results across evaluation metrics:
+
+Accuracy: 91%, reflecting the model&#x27;s overall ability to correctly classify houses.
+Precision: Over 91%, showing the reliability of predictions for houses built before 1980.
+Recall: Exceeding 91%, indicating the model’s strong capability in identifying true positives.
+These metrics highlight the model&#x27;s effectiveness and reliability for this classification task.
+
+```{python}
+from sklearn.metrics import precision_score, recall_score
+
+# Calculate evaluation metrics
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+
+# Display metrics
+print(f&quot;Accuracy: {accuracy}&quot;)
+print(f&quot;Precision: {precision}&quot;)
+print(f&quot;Recall: {recall}&quot;)
+```</code></pre></details></section></main>
+<footer><div class="wrap">Kevin Murray · Business Analytics · Executed portfolio analysis</div></footer></body></html>

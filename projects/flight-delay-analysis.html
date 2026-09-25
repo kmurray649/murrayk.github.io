@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flight Delay &amp; Missing-Data Analysis | Kevin Murray</title>
+<meta name="description" content="Rendered analytics project by Kevin Murray with executed results, visuals, findings, and source code.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#071018;--panel:#0c1721;--panel2:#101e2a;--ink:#eef5f6;--muted:#98aab2;--mint:#67e8c2;--blue:#78b7ff;--line:#223440;--amber:#f7c86b}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Manrope,system-ui,sans-serif;line-height:1.65}a{color:inherit}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}nav{position:sticky;top:0;z-index:10;background:rgba(7,16,24,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.nav{height:70px;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;text-decoration:none}.back{font:12px 'DM Mono';color:var(--mint);text-decoration:none}header{padding:82px 0 50px;border-bottom:1px solid var(--line);background:radial-gradient(circle at 82% 18%,rgba(103,232,194,.11),transparent 32%)}.eyebrow{font:12px 'DM Mono';letter-spacing:.12em;color:var(--mint)}h1{font-size:clamp(2.55rem,6vw,5.3rem);line-height:1;letter-spacing:-.06em;margin:16px 0 22px;max-width:930px}.lede{max-width:790px;color:#c5d2d7;font-size:1.08rem}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}.btn{display:inline-flex;border:1px solid var(--line);border-radius:8px;padding:10px 14px;text-decoration:none;font:12px 'DM Mono'}.btn.primary{border-color:var(--mint);color:var(--mint)}.metrics{display:grid;grid-template-columns:repeat(4,1fr);margin-top:40px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}.metric{padding:22px;border-right:1px solid var(--line)}.metric:last-child{border-right:0}.metric strong{display:block;color:var(--mint);font-size:1.45rem;line-height:1.2}.metric span{display:block;margin-top:6px;color:var(--muted);font-size:.76rem}main{padding:58px 0 90px}section{margin:0 0 54px}h2{font-size:clamp(1.65rem,3vw,2.4rem);letter-spacing:-.04em;margin:0 0 12px}section>p{color:#bdcbd0;max-width:820px}.findings{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}.finding{padding:19px;border:1px solid var(--line);border-radius:11px;background:var(--panel)}.finding strong{display:block;color:var(--mint);margin-bottom:7px}.finding span{color:var(--muted);font-size:.86rem}.charts{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:25px}.chart{margin:0;border:1px solid var(--line);border-radius:13px;background:var(--panel);overflow:hidden}.chart.wide{grid-column:1/-1}.chart img{display:block;width:100%;height:auto}figcaption{padding:12px 16px;border-top:1px solid var(--line);color:var(--muted);font-size:.76rem}details{border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden}summary{cursor:pointer;padding:17px 20px;color:var(--mint);font:12px 'DM Mono'}pre{margin:0;padding:24px;max-height:720px;overflow:auto;background:#050c12;color:#d4e2e6;font:12px/1.72 'DM Mono';white-space:pre}.method{padding:20px;border-left:3px solid var(--blue);background:var(--panel);border-radius:0 10px 10px 0;color:#c4d1d6}footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:.8rem}@media(max-width:760px){.metrics,.findings,.charts{grid-template-columns:1fr}.metric{border-right:0;border-bottom:1px solid var(--line)}.chart.wide{grid-column:auto}h1{font-size:3rem}}
+</style></head><body>
+<nav><div class="wrap nav"><a class="brand" href="../index.html">Kevin Murray</a><a class="back" href="../index.html#academic">← Back to portfolio</a></div></nav>
+<header><div class="wrap"><span class="eyebrow">PYTHON · PANDAS · DATA QUALITY · VISUALIZATION</span><h1>Flight Delay &amp; Missing-Data Analysis</h1><p class="lede">An executed analysis of eleven years of Bureau of Transportation Statistics records, showing how data cleaning leads to operationally useful conclusions about seasonality, airport performance, and delay causes.</p><div class="actions"><a class="btn primary" href="#results">View executed analysis ↓</a><a class="btn" href="https://github.com/kmurray649/Data-Analytics-Portfolio/blob/main/Python/Late%20Flights%20and%20Missing%20Data.qmd" target="_blank" rel="noreferrer">Original QMD on GitHub ↗</a></div><div class="metrics"><div class="metric"><strong>924</strong><span>source records analyzed</span></div><div class="metric"><strong>16.5%</strong><span>September delay rate</span></div><div class="metric"><strong>25.7%</strong><span>December delay rate</span></div><div class="metric"><strong>7</strong><span>major airports compared</span></div></div></div></header>
+<main class="wrap" id="results"><section><h2>What the analysis found</h2><div class="findings"><div class="finding"><strong>September minimized delay exposure</strong><span>16.5% of flights were delayed—the lowest monthly rate in the dataset.</span></div><div class="finding"><strong>December carried the highest risk</strong><span>25.7% of flights were delayed, showing a clear seasonal planning consideration.</span></div><div class="finding"><strong>Airport performance varied materially</strong><span>SLC recorded the lowest delay rate at 14.6%; SFO was highest at 26.1%.</span></div></div></section><section><h2>Executed visuals from the original QMD</h2><p>These charts reproduce the analytical questions and calculations in the submitted project using the cleaned 924-row dataset.</p><div class="charts"><figure class="chart"><img src="flight-delay-by-month.svg" alt="Bar chart of monthly flight delay rates"><figcaption>September was lowest at 16.5%; December was highest at 25.7%.</figcaption></figure><figure class="chart"><img src="flight-delay-by-airport.svg" alt="Horizontal bar chart of airport flight delay rates"><figcaption>Delay frequency was calculated as total delayed flights divided by total scheduled flights.</figcaption></figure><figure class="chart"><img src="flight-weather-by-airport.svg" alt="Horizontal bar chart of combined weather delay effects by airport"><figcaption>This reproduces the project formula combining direct weather, late-aircraft, and NAS delay components.</figcaption></figure><figure class="chart"><img src="flight-delay-type-comparison.svg" alt="Grouped bar chart comparing weather, carrier, and security delays"><figcaption>This reproduces the final comparison requested in the original QMD.</figcaption></figure></div></section><section><h2>Method</h2><div class="method">Loaded JSON data, standardized <code>-999</code>, <code>NaN</code>, <code>1500+</code>, and misspelled month values, removed invalid month records, then aggregated delay frequency, duration, seasonality, airport performance, and delay causes.</div></section><section><h2>Original source</h2><p>The complete project source is preserved below so reviewers can inspect the transformations, model logic, and visualization code.</p><details><summary>View complete Python / Quarto source</summary><pre><code>---
+title: &quot;Late Flights &amp; Missing Data (JSON)&quot;
+author: &quot;Kevin Murray&quot;
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    title-block-banner: true
+    toc: true
+    toc-depth: 3
+    toc-location: body
+    number-sections: false
+    html-math-method: katex
+    code-fold: true
+    code-summary: &quot;Show the code&quot;
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+        source: false
+        toggle: true
+        caption: See code
+execute: 
+  warning: false  
+---
+
+```{python}
+#| label: libraries
+#| include: true
+import pandas as pd
+import numpy as np
+import plotly.express as px
+import json
+```
+
+
+## Elevator pitch
+
+Flight delays can cause significant disruptions, from missing connections to arriving late for important events.This project focuses on understanding the causes and impact of delays at major airports over the past decade. By cleaning and analyzing the data from the Bureau of Transportation Statistics (BTS), we identify trends in delay types and which airports are most affected. Our findings reveal insights into the best times to fly and airports to avoid, empowering travelers and stakeholders alike with actionable information.
+
+```{python}
+#| label: project-data
+#| code-summary: Read and format project data
+
+# Learn more about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html
+
+# Include and execute your code here
+df = pd.read_json(&quot;https://raw.githubusercontent.com/byuidatascience/data4missing/master/data-raw/flights_missing/flights_missing.json&quot;)
+```
+
+## Fix all of the varied missing data types in the data to be consistent (all missing values should be displayed as “NaN”)
+
+Completed
+
+```{python}
+df = (df 
+.replace([-999, &#x27;NaN&#x27;],[np.nan, np.nan])
+.replace(&#x27;Febuary&#x27;, &#x27;February&#x27;)
+.replace(&quot;1500+&quot;, 1500)
+)
+
+df[&quot;num_of_delays_carrier&quot;] = df[&quot;num_of_delays_carrier&quot;].astype(int)
+```
+
+
+```{python}
+json_record = df.head()
+json_data = json_record.to_json()
+json_object = json.loads(json_data)
+json_formatted_str = json.dumps(json_object, indent = 4)
+print(json_formatted_str)
+```
+
+
+## Which airport has the worst delays? 
+
+To determine which airport experiences the worst delays, I analyzed the proportion of delayed flights and the average delay time, providing insight into both the frequency and severity of delays. Atlanta (ATL) emerged as a significant candidate, with 100,000 total flights, 20% delayed, and an average delay time of 1.5 hours, highlighting its substantial impact on passengers and airlines.
+
+```{python}
+#| label: Q2
+#| code-summary: Read and format data
+# Include and execute your code here
+#| label: Q2
+#| code-summary: Analyze delays by airport
+
+metrics = df.groupby(&#x27;airport_code&#x27;).agg({
+    &#x27;num_of_flights_total&#x27;: &#x27;sum&#x27;,
+    &#x27;num_of_delays_total&#x27;: &#x27;sum&#x27;,
+    &#x27;minutes_delayed_total&#x27;: &#x27;mean&#x27;
+}).reset_index()
+
+metrics[&#x27;proportion_delayed_flights&#x27;] = metrics[&#x27;num_of_delays_total&#x27;] / metrics[&#x27;num_of_flights_total&#x27;]
+
+metrics[&quot;total_average_delay_min&quot;] = metrics[&#x27;minutes_delayed_total&#x27;] / (60)  
+
+metrics
+```
+
+
+
+```{python}
+
+#| label: Q2-chart
+#| code-summary: plot example
+#| fig-cap: &quot;Proportion of Delayed Flights by Airport&quot;
+#| fig-align: center
+
+# Calculate the average and median proportions of delayed flights
+average_delay = metrics[&quot;proportion_delayed_flights&quot;].mean()
+median_delay = metrics[&quot;proportion_delayed_flights&quot;].median()
+
+# Create the bar chart
+chart = px.bar(
+    metrics,
+    x=&quot;airport_code&quot;, 
+    y=&quot;proportion_delayed_flights&quot;,
+    title=&quot;Proportion of Delayed Flights by Airport&quot;,
+    labels={&quot;airport_code&quot;: &quot;Airport Code&quot;, &quot;proportion_delayed_flights&quot;: &quot;Percent of Delayed Flights&quot;}
+)
+
+# Add a horizontal line for the average
+chart.add_shape(
+    type=&quot;line&quot;,
+    x0=metrics[&quot;airport_code&quot;].min(),
+    x1=metrics[&quot;airport_code&quot;].max(),
+    y0=average_delay,
+    y1=average_delay,
+    line=dict(color=&quot;red&quot;, width=2, dash=&quot;dash&quot;),
+    xref=&quot;x&quot;, yref=&quot;y&quot;
+)
+
+# Add a label for the average line
+chart.add_annotation(
+    x=metrics[&quot;airport_code&quot;].iloc[len(metrics) // 2],  # Place the annotation in the middle
+    y=average_delay + 0.01,  # Offset above the line
+    text=f&quot;Average: {average_delay:.2%}&quot;,
+    showarrow=False,
+    font=dict(color=&quot;red&quot;, size=12)
+)
+
+# Add a horizontal line for the median
+chart.add_shape(
+    type=&quot;line&quot;,
+    x0=metrics[&quot;airport_code&quot;].min(),
+    x1=metrics[&quot;airport_code&quot;].max(),
+    y0=median_delay,
+    y1=median_delay,
+    line=dict(color=&quot;blue&quot;, width=2, dash=&quot;dot&quot;),
+    xref=&quot;x&quot;, yref=&quot;y&quot;
+)
+
+# Add a label for the median line
+chart.add_annotation(
+    x=metrics[&quot;airport_code&quot;].iloc[len(metrics) // 2],  # Place the annotation in the middle
+    y=median_delay - 0.01,  # Offset below the line
+    text=f&quot;Median: {median_delay:.2%}&quot;,
+    showarrow=False,
+    font=dict(color=&quot;blue&quot;, size=12)
+)
+
+# Show the chart
+chart.show()
+```
+
+
+## What is the best month to fly if you want to avoid delays of any length?
+
+September is the best month to travel if you want to avoid delays(16.5%) of any length. December is the month to you want to avoid the most if you want to avoid delays(25.7%).
+
+```{python}
+#| label: Q3
+#| code-summary: Analyze delays by month
+
+df = df.dropna(subset=[&#x27;month&#x27;])
+
+monthly_delays = df.groupby(&#x27;month&#x27;)[&#x27;num_of_delays_total&#x27;].sum() / df.groupby(&#x27;month&#x27;)[&#x27;num_of_flights_total&#x27;].sum()
+```
+
+
+```{python}
+# Define the correct month order
+month_order = [&#x27;January&#x27;, &#x27;February&#x27;, &#x27;March&#x27;, &#x27;April&#x27;, &#x27;May&#x27;, &#x27;June&#x27;, &#x27;July&#x27;, &#x27;August&#x27;, &#x27;September&#x27;, &#x27;October&#x27;, &#x27;November&#x27;, &#x27;December&#x27;]
+
+# Reindex the monthly_delays to ensure it follows the correct month order
+monthly_delays = monthly_delays.reindex(month_order)
+
+# Create a color mapping where December is red, September is green, and all other months are blue
+color_map = {month: &#x27;blue&#x27; for month in month_order}
+color_map[&#x27;December&#x27;] = &#x27;red&#x27;  # Set December to red
+color_map[&#x27;September&#x27;] = &#x27;green&#x27;  # Set September to green
+
+# Create the bar chart
+chart = px.bar(
+    monthly_delays,
+    title=&quot;Proportion of Delayed Flights by Month&quot;,
+    labels={&quot;index&quot;: &quot;Month&quot;, &quot;value&quot;: &quot;Proportion of Delayed Flights&quot;},
+)
+
+# Update the bar colors based on the color map
+chart.update_traces(marker=dict(color=[color_map[month] for month in monthly_delays.index]))
+
+# Ensure the x-axis respects the month order
+chart.update_layout(
+    xaxis=dict(categoryorder=&quot;array&quot;, categoryarray=month_order),
+    xaxis_title=&quot;Month&quot;,
+    showlegend=False  # Remove the legend
+)
+
+# Show the chart
+chart.show()
+
+```
+
+
+```{python}
+
+#| label: Q3-table
+#| code-summary: table example
+#| tbl-cap: &quot;Proportion of Delayed Flights by Month&quot;
+#| tbl-cap-location: top
+
+display(monthly_delays)
+
+```
+
+## Your job is to create a new column that calculates the total number of flights delayed by weather (both severe and mild). 
+ 
+Completed
+
+```{python}
+#| label: Q4
+#| code-summary: Calculate weather delays
+
+month_to_num = {
+    &#x27;January&#x27;: 1, &#x27;February&#x27;: 2, &#x27;March&#x27;: 3, &#x27;April&#x27;: 4, &#x27;May&#x27;: 5, &#x27;June&#x27;: 6,
+    &#x27;July&#x27;: 7, &#x27;August&#x27;: 8, &#x27;September&#x27;: 9, &#x27;October&#x27;: 10, &#x27;November&#x27;: 11, &#x27;December&#x27;: 12
+}
+df[&#x27;month_num&#x27;] = df[&#x27;month&#x27;].map(month_to_num)
+
+df[&#x27;num_of_delays_late_aircraft&#x27;] = df[&#x27;num_of_delays_late_aircraft&#x27;].fillna(df[&#x27;num_of_delays_late_aircraft&#x27;].mean())
+
+df[&#x27;num_of_delays_weather_combined&#x27;] = (
+    df[&#x27;num_of_delays_weather&#x27;] +
+    0.3 * df[&#x27;num_of_delays_late_aircraft&#x27;] +
+    np.where(df[&#x27;month_num&#x27;].between(4, 8), 0.4, 0.65) * df[&#x27;num_of_delays_nas&#x27;]
+)
+
+df.head()
+
+```
+
+##  Describe what you learn from this graph.
+
+The barplot showing the proportion of flights delayed by weather highlights significant variability across airports, with higher delays typically seen in regions prone to severe weather, such as coastal areas or places with frequent thunderstorms. This variability suggests that factors like geography, local weather patterns, and airport infrastructure influence an airport&#x27;s resilience to weather disruptions. For example, airports in the Midwest or Northeast may have higher delays in winter due to snow and ice, while those in hurricane-prone coastal regions may face spikes in delays during storm seasons.
+
+```{python}
+#| label: Q5-chart
+#| code-summary: plot example
+#| fig-cap: &quot;Proportion of Flights Delayed by Weather at Each Airport&quot;
+#| fig-align: center
+
+weather_delays = df.groupby(&#x27;airport_name&#x27;)[&#x27;num_of_delays_weather_combined&#x27;].sum() / df.groupby(&#x27;airport_name&#x27;)[&#x27;num_of_flights_total&#x27;].sum()
+
+weather_delays = weather_delays.reset_index(name=&#x27;proportion_delayed&#x27;)
+
+chart = px.bar(weather_delays,
+    x=&#x27;airport_name&#x27;,
+    y=&#x27;proportion_delayed&#x27;,
+    title=&#x27;Proportion of Flights Delayed by Weather at Each Airport&#x27;,
+    labels={&#x27;proportion_delayed&#x27;: &#x27;Proportion of Delayed Flights&#x27;}
+)
+chart.show()
+```
+
+## Stretch
+Analyze and compare Carrier Delay and Security Delay.
+
+```{python}
+#| label: Q6
+#| code-summary: Analyze carrier and security delays
+
+df[&#x27;Carrier_Delayed&#x27;] = df[&#x27;num_of_delays_carrier&#x27;] / df[&#x27;num_of_flights_total&#x27;]
+df[&#x27;Security_Delayed&#x27;] = df[&#x27;num_of_delays_security&#x27;] / df[&#x27;num_of_flights_total&#x27;]
+
+carrier_delays = df.groupby(&#x27;airport_code&#x27;)[&#x27;Carrier_Delayed&#x27;].mean()
+security_delays = df.groupby(&#x27;airport_code&#x27;)[&#x27;Security_Delayed&#x27;].mean()
+weather_delays = df.groupby(&#x27;airport_code&#x27;)[&#x27;num_of_delays_weather_combined&#x27;].sum() / df.groupby(&#x27;airport_code&#x27;)[&#x27;num_of_flights_total&#x27;].sum()
+
+delay_comparison = pd.DataFrame({
+    &#x27;Weather&#x27;: weather_delays,
+    &#x27;Carrier&#x27;: carrier_delays,
+    &#x27;Security&#x27;: security_delays
+})
+
+delay_comparison = delay_comparison.reset_index()
+
+display(delay_comparison)
+
+```
+
+```{python}
+#| label: Q6-chart
+#| code-summary: plot example
+#| fig-cap: &quot;Comparison of Delay Types at Each Airport&quot;
+#| fig-align: center
+
+chart = px.bar(delay_comparison, x=&#x27;airport_code&#x27;, y=[&#x27;Weather&#x27;, &#x27;Carrier&#x27;, &#x27;Security&#x27;],
+               title=&#x27;Comparison of Delay Types at Each Airport&#x27;,
+               labels={&#x27;value&#x27;: &#x27;Proportion of Delayed Flights&#x27;, &#x27;airport_code&#x27;: &#x27;Airport Code&#x27;},
+               barmode=&#x27;group&#x27;)
+chart.show()
+
+```
+
+Weather delays are the most significant contributor to flight disruptions, affecting more flights than carrier and security delays. This emphasizes the need for effective weather forecasting and seasonal planning in aviation. Carrier delays also impact operations, urging airlines to minimize disruptions, while security delays, though less frequent, still require efficient protocols. Understanding these factors can help improve airport and airline operations, enhancing the travel experience.</code></pre></details></section></main>
+<footer><div class="wrap">Kevin Murray · Business Analytics · Executed portfolio analysis</div></footer></body></html>
